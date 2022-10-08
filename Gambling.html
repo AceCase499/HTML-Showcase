@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gambling Game</title>
+<link rel="icon" type="image/x-icon" href="IMGs/fav.png">
+<style>
+.slider {
+  -webkit-appearance: none;
+  width: 25%;
+  height: 15px;
+  border-radius: 15px;  
+  background: #FFFF00;
+  outline: none;
+  opacity: 0.7;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #E67300;
+  cursor: pointer;
+}
+</style>
+
+<script>
+var winningNum = 0;
+var yourNum = 0;
+var funnymoney = 500;
+var FMbet = 0;
+var percentBet = 50;
+var rising = false;
+var WN = document.getElementById("win");
+var YN = document.getElementById("yours");
+var mon = document.getElementById("money");
+var betPercent = document.getElementById("betPercent");
+var perz = document.getElementById("perz");
+
+function roll(){
+	//if (document.getElementById("money").value <= 0){
+	//	alert("You're BROKE.\nGame Over");
+	//} else {
+		document.getElementById("ris").disabled=false;
+		document.getElementById("sto").disabled=false;
+		winningNum = (Math.floor(Math.random() * 75)) + 25;
+		document.getElementById("win").innerHTML = String(winningNum);
+		yourNum = 0;
+		document.getElementById("yours").innerHTML = "0";
+		document.getElementById("money").value = String(funnymoney);
+	//}
+}
+
+function updateFixed(number){
+	document.wager.bet[1].checked = true;
+	FMbet = number;
+}
+function updatePercent(number){
+	//alert(number);
+	document.wager.bet[2].checked = true;
+	percentBet = number;
+	document.getElementById("perz").innerHTML = String(number) + "%";
+}
+
+function auto(){ //game speed is 60, dev speed is 100
+	if (rising){
+		yourNum++;
+		document.getElementById("yours").innerHTML = String(yourNum);
+	}
+}
+
+function checkForMatch(){
+	if (winningNum == yourNum){
+		var abc = document.wager.bet;
+		if (abc[0].checked){
+			alert("Winner!!\n+300 Funnies");
+			funnymoney += 300;
+			document.getElementById("money").value = String(funnymoney);
+		}
+		if (abc[1].checked){
+			alert("Winner!!\n+300 Funnies\n+" + FMbet + " wagered Funnies");
+			funnymoney += 300+FMbet;
+			document.getElementById("money").value = String(funnymoney);
+			
+		}
+		if (abc[2].checked){
+			var payout = Math.floor(funnymoney*(percentBet/100))
+			alert("Winner!!\n+300 Funnies\n+" + payout + " wagered Funnies");
+			funnymoney += 300+payout;
+			document.getElementById("money").value = String(funnymoney);
+		}		
+	}
+	if (winningNum != yourNum){
+		var abc = document.wager.bet;
+		if (abc[0].checked){
+			alert("TOO BAD!");
+		}
+		if (abc[1].checked){
+			alert("TOO BAD!\n-" + FMbet + " wagered Funnies");
+			funnymoney -= FMbet;
+			document.getElementById("money").value = String(funnymoney);
+		}
+		if (abc[2].checked){
+			var payout = Math.floor(funnymoney*(percentBet/100))
+			alert("TOO BAD!\n-" + payout + " wagered Funnies");
+			funnymoney -= payout;
+			document.getElementById("money").value = String(funnymoney);
+		}
+	}
+	if (document.getElementById("money").value <= 0){
+		alert("You're BROKE.\nGame Over");
+		document.getElementById("roller").disabled=true;
+	}
+}
+
+function startRise(){
+	funnymoney -= 100;
+	document.getElementById("money").value = String(funnymoney);
+	rising = true;
+	document.getElementById("ris").disabled=true;
+}
+
+function stopRise(){
+	rising = false;
+	checkForMatch();
+	document.getElementById("sto").disabled=true;
+}
+	
+</script>
+</head>
+
+<body bgColor=#150833 onLoad="setInterval(auto, 160); roll();">
+<font size="+2" style="color: yellow">
+<center>
+<h2>Light-Speed Matching!</h2>
+<p>Match the Winning Number with Your Number to win a prize!</p>
+<p>Wager your FunnyMoney to win more!!</p>
+
+<div style="background-color: yellow;">
+<p id="Dialogue">LINE</p>
+</div>
+
+<b>Winning Number:</b> <h1 id="win">0</h1>
+<b>Your Number:</b> <h1 id="yours">0</h1>
+
+<input onclick="roll()" style="font-size : 30px;" type="button" id="roller" value="ReRoll">
+<input onclick="startRise()" style="font-size : 30px; background-color: #AAFF99;" type="button" id="ris" value="Start!">
+<input onclick="stopRise()" style="font-size : 30px; background-color: #FF6666;" type="button" id="sto" value="Stop!">
+</center>
+<p>100 Funnies to Play</p>
+<b>Your FunnyMoney:</b>
+<input style="font-size : 20px;" type="text" disabled="disabled" id="money" value="0">
+<br>
+<br>
+<form name="wager">
+<b>Wager:</b>
+  <br><input type="radio" name="bet" value="none" checked>Don't Bet
+  <br><input type="radio" name="bet" value="fixed">Fixed Amount<input style="font-size : 20px;" type="text" id="betFixed" value="250" oninput="updateFixed(this.value)">
+  <br><input type="radio" name="bet" value="percent">Bet by %<input type="range" min="1" max="100" value="50" class="slider" id="betPercent" oninput="updatePercent(this.value)"> <b id="perz">50%</b>
+</form>
+<br>
+<input onClick="window.location.reload()" style="font-size : 35px; color: blue;" type="button" value="Start Over"><br>
+</body>
+</html>

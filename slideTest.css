@@ -1,0 +1,35 @@
+body{
+background-color: #150833;
+}
+
+h1{
+font-size: 60px;
+font-family: 'Karla', sans-serif;
+font-weight: lighter;
+}
+
+.slider-frame{
+height: 350px;
+width: 350px;
+overflow: visible;
+}
+
+.image{
+margin-top: 60px;
+background-image: url("IMGs/red.png");
+background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+animation: background infinite 45s;
+}
+
+@keyframes background{
+0%   {background-image: url("IMGs/java.png");}
+20%  {background-image: url("IMGs/python.png");}
+40%  {background-image: url("IMGs/sql.png");}
+60%  {background-image: url("IMGs/unity.png");}
+80%  {background-image: url("IMGs/lua.png");}
+90% {background-image: url("IMGs/cSharp.png");}
+100% {background-image: url("IMGs/java.png");}
+}

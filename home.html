@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Welcome to my website!</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="slideTest.css">
+<link rel="icon" type="image/x-icon" href="IMGs/fav.png">
+
+<script>
+//bgColor=#383838
+//bool value that switches ss device on and off
+//call a function with getElementById(picA) as an arg
+//all photos start off invisible
+//function will make the pic visible, move it off screen on the right, slide it left to the center,
+//wait 6 seconds, slide it left off screen, and make it invisible again
+//while loop calls the function every 6 seconds with a sequence of pics
+$(document).ready(function(){
+$("img").fadeIn(3000);
+
+$("#java").animate({top:'42%'}, 1500, function(){$("#java").animate({left:'5%'}, 2300)});
+ 
+$("#python").animate({top:'42%'}, 1500, function(){$("#python").animate({left:'20%'}, 2300)});
+
+$("#lua").animate({top:'42%'}, 1500, function(){$("#lua").animate({left:'73%'}, 2300)});
+
+$("#unity").animate({top:'42%'}, 1500, function(){$("#unity").animate({left:'86%'}, 2300)});
+});
+  
+$(document).ready(function(){
+$("#thbNl, h1, p, h2").css("display", "none");
+$("#thbNl, h1, p, h2").fadeIn(2000);
+});
+</script>
+  
+<style>
+h1, h2, p, ul, li {color: white;}
+#java { position:absolute; left:50%; top:0%; z-index:2; }
+#python { position:absolute; left:50%; top:0%; z-index:2; }
+#lua { position:absolute; left:50%; top:0%; z-index:2; }
+#unity { position:absolute; left:50%; top:0%; z-index:2; }
+
+</style>
+
+</head>
+
+<body background="IMGs/rgb.png">
+<font size="+2">
+
+<center>
+<pre>
+<h1>Jerrod Graham
+Computer Science BS
+Game and Software Developer
+based in New York State</h1>
+</pre>
+
+<img src="IMGs/me.jpeg" width="300" height="300" id="thbNl" alt="my photo">
+<br>
+<br>
+<h2>My skills</h2>
+<ul>
+<li>Computer Programming, Years of Experience in a Myriad of Languages
+<li>Software Engineer and Developer Experience
+<li>Video Game Design
+<li>Graphic Design
+<li>Music Composition
+<li>Organization of Tasks, Due Dates and Major Priorities
+<li>Communication with Others
+</ul>
+
+<br>
+<b style="color: Khaki;">--><a href="mailto:jerrodag99@gmail.com?" style="color:lightblue;">View my Best Work!</a><--</b>
+<br>
+
+<div class="slider-frame">
+<div class="image">
+</div>
+</div>
+
+<div background-color="white">
+<b style="color: Khaki;">Feel free to reach me at <a href="mailto:jerrodag99@gmail.com?" style="color:lightblue;">jerrodag99@gmail.com</a>.</b>
+</div>
+</center>
+<img src="IMGs/java.png" id="java" width="80" height="80">
+<img src="IMGs/python.png" id="python" width="80" height="80">
+<img src="IMGs/lua.png" id="lua" width="80" height="80">
+<img src="IMGs/unity.png" id="unity" width="80" height="80">
+
+</body>
+</html>
