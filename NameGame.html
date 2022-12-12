@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Name Game!</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="icon" type="image/x-icon" href="IMGs/fav.png">
+<style>
+
+</style>
+
+<script>
+//$(document).ready(function(){
+
+//$("#music1").animate({top:'15%'}, 1100, function(){$("#music1").animate({top:'9%'}, 1100)});
+//$("#music2").animate({top:'15%'}, 1100, function(){$("#music2").animate({top:'9%'}, 1100)});
+//});
+
+
+function animat(){
+	//alert("moving");
+	$("#music1").animate({top:'15%'}, 1100, function(){$("#music1").animate({top:'9%'}, 1100)});
+	$("#music2").animate({top:'15%'}, 1100, function(){$("#music2").animate({top:'9%'}, 1100)});
+}
+
+function Rhyme(theName){
+	//NOTE: The name must contain at least one vowel
+	
+	if (theName == ""){
+		document.getElementById("NameDisplay").innerHTML = "";
+		document.getElementById("therhyme").innerHTML = "";
+	}
+	
+	if (theName.match(/[a|e|i|o|u|y]\D+/g) != null){
+		document.getElementById("NameDisplay").innerHTML = theName;
+		
+		if (theName[0] == "b" | theName[0] == "B"){
+			var line1 = theName+", "+theName+" "+"Bo-"+theName.match(/[a|e|i|o|u|y]\D+/g)[0];
+		} else {
+			var line1 = theName+", "+theName+" "+"Bo B"+theName.match(/[a|e|i|o|u|y]\D+/g)[0];
+		}
+		
+		if (theName[0] == "f" | theName[0] == "F"){
+			var line2 = "Banana Fana Fo-"+theName.match(/[a|e|i|o|u|y]\D+/g)[0];
+		} else {
+			var line2 = "Banana Fana Fo F"+theName.match(/[a|e|i|o|u|y]\D+/g)[0];
+		}
+		
+		if (theName[0] == "m" | theName[0] == "M"){
+			var line3 = "Fee Fi Mo-"+theName.match(/[a|e|i|o|u|y]\D+/g)[0];
+		} else {
+			var line3 = "Fee Fi Mo M"+theName.match(/[a|e|i|o|u|y]\D+/g)[0];
+		}
+		
+		document.getElementById("therhyme").innerHTML = 
+		line1+"<br>"
+		+line2+"<br>"
+		+line3+"<br>"
+		+theName+"!!";
+	}
+}
+	
+</script>
+
+<style>
+#music1 { position:absolute; left:20%; top:9%; z-index:2; }
+#music2 { position:absolute; left:70%; top:9%; z-index:2; }
+</style>
+</head>
+
+<body bgColor=#FFB3B3 onload="setInterval(animat(), 3000)">
+<font size="+2" style="color: #FF0055">
+<center>
+<div style="background-color: #FF0055;">
+<p>LINE</p>
+</div>
+<h1>The Name Game</h1>
+<br>
+<input style="font-size : 20px;" type="text" id="enterName" oninput="Rhyme(this.value)">
+
+<h1 id="NameDisplay"></h1>
+<h2 id="therhyme"></h2>
+
+</center>
+
+<img src="IMGs/music1.png" id="music1" width="80" height="80">
+<img src="IMGs/music2.png" id="music2" width="80" height="80">
+</body>
+</html>
